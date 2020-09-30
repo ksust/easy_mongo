@@ -1,0 +1,7 @@
+name: app_name
+
+mongo: # mongo config
+  host: 127.0.0.1
+  port: 27017
+  name: db_name
+  password: password # blank if not require
