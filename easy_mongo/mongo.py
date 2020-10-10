@@ -17,7 +17,7 @@ class EasyMongo():
         elif isinstance(config_or_yml_path, str):
             self.__config_dic = EasyMongoConfig(config_or_yml_path).__dict__
         else:
-            raise TypeError('config_or_yml_path: need str or EasyKafkaConfig')
+            raise TypeError('config_or_yml_path: need str or EasyMongoConfig')
         self.connect = MongoClient(host=self.__config_dic['host'], port=self.__config_dic['port'])
         self.db = self.connect[self.__config_dic['name']]
         self.db.authenticate(self.__config_dic['name'], self.__config_dic['password'])
@@ -29,11 +29,3 @@ class EasyMongo():
 
     def get_collection(self, collection: str):
         return self.db[collection]
-
-
-if __name__ == '__main__':
-    easy_mongo = EasyMongo('../conf/conf.yml')
-    col = easy_mongo.get_collection('country')
-    # get first 10 items
-    for item in col.find().limit(10):
-        print(item)

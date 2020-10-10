@@ -14,7 +14,7 @@ class EasyMongoLog:
         if EasyMongoLog.__logger is None:
             with EasyMongoLog.__instance_lock:
                 if EasyMongoLog.__logger is None:
-                    logger = logging.getLogger('easy_kafka')
+                    logger = logging.getLogger('easy_mongo_log')
                     logger.setLevel(logging.INFO)
                     # handler, stdout
                     ch = logging.StreamHandler()

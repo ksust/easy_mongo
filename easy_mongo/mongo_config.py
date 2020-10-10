@@ -3,12 +3,14 @@ import os
 import yaml
 from .mongo_log import EasyMongoLog
 
+
 class EasyMongoConfig:
     host = '127.0.0.1'
     port = 27017
     name = 'name'
     password = 'password'
     logger = EasyMongoLog.logger()
+
     def __init__(self, yml_path):
         """
         yml config file
@@ -20,10 +22,10 @@ class EasyMongoConfig:
         with open(yml_path, encoding='UTF-8') as f:
             data = f.read()
             conf = yaml.load(data, Loader=yaml.FullLoader)
-            self.host = conf['mongo']['host']
-            self.port = conf['mongo']['port']
-            self.name = conf['mongo']['name']
-            self.password = conf['mongo']['password']
+            self.host = conf['mongo'].get('host')
+            self.port = conf['mongo'].get('port')
+            self.name = conf['mongo'].get('name')
+            self.password = conf['mongo'].get('password')
             self.logger.info('EasyMongoConfig: yml parse done')
 
 
